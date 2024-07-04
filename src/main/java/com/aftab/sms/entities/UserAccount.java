@@ -9,10 +9,10 @@ import lombok.Data;
 @Entity
 @Data
 public class UserAccount {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
-    private String username;
-    private String password;
-    private String role;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long userId;
+	private String username;
+	private String password;
+	private String role;
 }

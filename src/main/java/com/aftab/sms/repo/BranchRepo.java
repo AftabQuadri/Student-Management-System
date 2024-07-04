@@ -10,13 +10,11 @@ import com.aftab.sms.entities.Branch;
 
 @Repository
 public interface BranchRepo extends JpaRepository<Branch, Long> {
-    @Query("SELECT DISTINCT b.branchName FROM Branch b")
-    List<String> findDistinctBranchNames();
-    
-    List<Branch> findByCourseName(String courseName);
-    
-    Branch findByBranchName(String branchName);
-    
-    
+	@Query("SELECT DISTINCT b.branchName FROM Branch b")
+	List<String> findDistinctBranchNames();
+
+	List<Branch> findByCourseName(String courseName);
+
+	Branch findByBranchName(String branchName);
 
 }

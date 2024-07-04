@@ -11,10 +11,8 @@ import com.aftab.sms.entities.Enrollment;
 
 @Repository
 public interface EnrollmentRepo extends JpaRepository<Enrollment, Long> {
-    // Example of a derived query method
-    List<Enrollment> findByEnrollmentId(Long enrollmentId);
+	List<Enrollment> findByEnrollmentId(Long enrollmentId);
 
-    // Example of a custom query method using JPQL
-    @Query("SELECT e FROM Enrollment e WHERE e.course.courseName = :courseName")
-    List<Enrollment> findEnrollmentsByCourseName(@Param("courseName") String courseName);
+	@Query("SELECT e FROM Enrollment e WHERE e.course.courseName = :courseName")
+	List<Enrollment> findEnrollmentsByCourseName(@Param("courseName") String courseName);
 }

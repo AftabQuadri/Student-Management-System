@@ -10,11 +10,11 @@ import lombok.Data;
 @Data
 public class Branch {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long branchId;
-    
-    private String branchName;
-    
-    private String courseName;
-    private String branchDescription;
-    }
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long branchId;
+
+	private String branchName;
+
+	private String courseName;
+	private String branchDescription;
+}

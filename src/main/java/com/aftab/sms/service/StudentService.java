@@ -14,49 +14,73 @@ import com.aftab.sms.entities.Branch;
 import com.aftab.sms.entities.Course;
 import com.aftab.sms.entities.Student;
 import com.aftab.sms.entities.UserAccount;
+
+import jakarta.servlet.http.HttpServletResponse;
+
 @Service
 public interface StudentService {
-    Student getStudentByRegistrationNumber(Long id);
+	Student getStudentByRegistrationNumber(Long id);
 
-    List<Student> getAllStudents();
-    @Transactional
-    Student saveStudent(Student student);
-    
-    Student getStudentByFirstName(String name);
+	List<Student> getAllStudents();
 
-    Student getStudentByLastName(String name);
-    @Transactional
-    void deleteStudent(Student student);
-    
-    List<String> getUserAccountType();
-    public void saveBranches(Set<Branch> branches);
+	@Transactional
+	Student saveStudent(Student student);
+
+	Student getStudentByFirstName(String name);
+
+	Student getStudentByLastName(String name);
+
+	@Transactional
+	void deleteStudent(Student student);
+
+	List<String> getUserAccountType();
+
+	public void saveBranches(Set<Branch> branches);
+
 	public void saveCourses(Course courses);
+
 	public void saveUserAccount(UserAccount account);
 
 	public void saveBranch(Branch b);
+
 	public List<Course> getAllCourses();
+
 	public List<Branch> getAllBranches();
-	
+
 	public boolean logInAttempt(LoginRequesst login);
+
 	public List<String> getAllCourseNames();
+
 	public List<String> getAllBranchNames();
-	
+
 	public List<Branch> getBranchesByCourseName(String courseName);
-	public Map<String, List<Branch> > getBranchesAndCourseTogether();
+
+	public Map<String, List<Branch>> getBranchesAndCourseTogether();
+
 	public Branch getBranchByName(String name);
 
 	public Course getCourseByName(String course);
-	
+
 	public void deleteCoursesFromDB();
+
 	public void deleteBrachesFromDB();
+
 	public void deleteUsersFromDB();
 
 	public Optional<Branch> getBranchById(long id);
+
 	public Optional<Course> getCourseById(long id);
+
 	public void deleteAllStudents();
+
 	public void deleteAllRecords();
 
 	List<Student> search(SearchRequest sr);
+
 	public void clearList();
+
+	boolean exportPdf(HttpServletResponse response) throws Exception;
+
+	boolean exportExcel(HttpServletResponse response) throws Exception;
 
 }

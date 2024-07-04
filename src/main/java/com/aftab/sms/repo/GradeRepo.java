@@ -11,10 +11,8 @@ import com.aftab.sms.entities.Grade;
 
 @Repository
 public interface GradeRepo extends JpaRepository<Grade, Long> {
-    // Example of a derived query method
-    List<Grade> findByGradeId(Long gradeId);
+	List<Grade> findByGradeId(Long gradeId);
 
-    // Example of a custom query method using JPQL
-    @Query("SELECT g FROM Grade g WHERE g.course.courseName = :courseName")
-    List<Grade> findGradesByCourseName(@Param("courseName") String courseName);
+	@Query("SELECT g FROM Grade g WHERE g.course.courseName = :courseName")
+	List<Grade> findGradesByCourseName(@Param("courseName") String courseName);
 }

@@ -28,6 +28,7 @@ public class DataLoader implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		System.out.println("------------------------------");
 		service.deleteAllRecords();
+		service.clearList();
 		Course bTech = createBTechCourse();
 		Course mTech = createMTechCourse();
 		Course mba = createMBACourse();
@@ -144,7 +145,6 @@ public class DataLoader implements ApplicationRunner {
 		return branch;
 	}
 
-	@Transactional
 	private void createUser() {
 		UserAccount adminAccount = new UserAccount();
 		adminAccount.setUsername("Aftab");

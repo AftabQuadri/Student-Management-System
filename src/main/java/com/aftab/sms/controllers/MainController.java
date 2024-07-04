@@ -26,26 +26,21 @@ import com.aftab.sms.entities.Student;
 import com.aftab.sms.repo.CourseRepo;
 import com.aftab.sms.service.StudentService;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
 public class MainController {
 	@Autowired
 	private StudentService studentService;
 	@Autowired
 	private CourseRepo courseRepo;
-	List<Student> allStudents=new ArrayList<>();
+	List<Student> allStudents = new ArrayList<>();
 
-//	@GetMapping("/customers")
-//	public ResponseEntity<List<Customer>> getAllCustomers(){
-//		cList=insuranceService.getList();
-//		System.out.println(cList);
-//			return ResponseEntity.of(Optional.of(cList));
-//		
-//		
-//	}
 	@GetMapping("/home")
 	public String loadIndex(SearchRequest sr, Model model) {
 		System.out.println("-------------------Inside home----------------");
 		model.addAttribute("search", sr);
+		studentService.clearList();
 		init(model);
 		return "index";
 	}
@@ -53,7 +48,7 @@ public class MainController {
 	@GetMapping("/search")
 	public String search(@ModelAttribute("search") SearchRequest search, Model m) {
 		System.out.println("inside search:" + search);
-		List<Student> students= studentService.search(search);
+		List<Student> students = studentService.search(search);
 		m.addAttribute("students", students);
 		System.out.println("Received Data : " + search);
 		init(m);
@@ -85,26 +80,22 @@ public class MainController {
 		return "index";
 	}
 
-//	@GetMapping("/excel")
-//	public void exportExcel(HttpServletResponse response,Model m) throws Exception {
-//		response.setContentType("application/octet-stream");
-//		response.addHeader("Content-Disposition","attachment;filename=customer_plans.xls");
-//		insuranceService.exportExcel(response);
-//		
-//	}
-//	
-//	
-//	
-//
-//	@GetMapping("/pdf")
-//	public void exportPdf(HttpServletResponse response,Model m) throws Exception {
-//		response.setContentType("application/pdf");
-//		response.addHeader("Content-Disposition","attachment;filename=customer_plans.pdf");
-//		insuranceService.exportPdf(response);	
-//		
-//	}
-//	
-//	
+	@GetMapping("/excel")
+	public void exportExcel(HttpServletResponse response, Model m) throws Exception {
+		response.setContentType("application/octet-stream");
+		response.addHeader("Content-Disposition", "attachment;filename=Student_data.xls");
+		studentService.exportExcel(response);
+
+	}
+
+	@GetMapping("/pdf")
+	public void exportPdf(HttpServletResponse response, Model m) throws Exception {
+		response.setContentType("application/pdf");
+		response.addHeader("Content-Disposition", "attachment;filename=Student_data.pdf");
+		studentService.exportPdf(response);
+
+	}
+
 	private void init(Model model) {
 		model.addAttribute("accountType", studentService.getUserAccountType());
 		model.addAttribute("courses", studentService.getAllCourseNames());
@@ -122,7 +113,7 @@ public class MainController {
 		if (allStudents.size() > 0) {
 			m.addAttribute("students", allStudents);
 		}
-		
+
 		init(m);
 		return "index";
 	}
@@ -179,7 +170,7 @@ public class MainController {
 			e.printStackTrace(); // Log or handle exception as needed
 		}
 		System.out.println("______Inside Handle Method_______________________");
-		List<Student> allStudents = studentService.getAllStudents();
+		allStudents = studentService.getAllStudents();
 		m.addAttribute("students", allStudents);
 		init(m);
 		return "index";

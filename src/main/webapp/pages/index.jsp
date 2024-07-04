@@ -34,26 +34,23 @@
 			type="text" name="firstName" placeholder="First Name"
 			class="form-control m-3 p-2 rounded dark-border"> <input
 			type="text" name="lastName" placeholder="Last Name"
-			class="form-control m-3 p-2 rounded dark-border"> 
-			<select name="courseName" class="form-select m-3 p-2 rounded dark-border">
-    <option selected disabled>Course Name:</option>
-    <c:forEach var="course" items="${courses}">
-        <option value="${course}"
-            <c:if test="${course eq search.courseName}">selected</c:if>>
-            ${course}
-        </option>
-    </c:forEach>
-</select>
-
-<select name="branchName" class="form-select m-3 p-2 rounded dark-border">
-    <option selected disabled>Branch Name:</option>
-    <c:forEach var="branch" items="${branches}">
-        <option value="${branch}"
-            <c:if test="${branch eq search.branchName}">selected</c:if>>
-            ${branch}
-        </option>
-    </c:forEach>
-</select>
+			class="form-control m-3 p-2 rounded dark-border"> <select
+			name="courseName" class="form-select m-3 p-2 rounded dark-border">
+			<option selected disabled>Course Name:</option>
+			<c:forEach var="course" items="${courses}">
+				<option value="${course}"
+					<c:if test="${course eq search.courseName}">selected</c:if>>
+					${course}</option>
+			</c:forEach>
+		</select> <select name="branchName"
+			class="form-select m-3 p-2 rounded dark-border">
+			<option selected disabled>Branch Name:</option>
+			<c:forEach var="branch" items="${branches}">
+				<option value="${branch}"
+					<c:if test="${branch eq search.branchName}">selected</c:if>>
+					${branch}</option>
+			</c:forEach>
+		</select>
 
 		<button type="submit" class="btn btn-primary ml-4 mb-1">Search</button>
 		<a href="/home"><button type="button"

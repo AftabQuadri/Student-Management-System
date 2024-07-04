@@ -7,17 +7,17 @@ import lombok.Data;
 @Entity
 @Data
 public class Library {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long libraryId;
-    private String bookTitle;
-    private String author;
-    private String isbn;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long libraryId;
+	private String bookTitle;
+	private String author;
+	private String isbn;
 
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
+	@ManyToOne
+	@JoinColumn(name = "student_id")
+	private Student student;
 
-    private LocalDate issueDate;
-    private LocalDate returnDate;
+	private LocalDate issueDate;
+	private LocalDate returnDate;
 }
